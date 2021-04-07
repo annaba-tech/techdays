@@ -46,10 +46,11 @@ export type Stage = {
 export type Workshop = {
   title: string;
   description: string;
+  slug: string;
   start: string;
   end: string;
   location: string;
-  mentor: Mentor[];
+  mentor: Mentor;
 };
 
 export type Link = {

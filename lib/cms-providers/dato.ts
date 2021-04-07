@@ -58,7 +58,6 @@ export async function getAllMentors(): Promise<Mentor[]> {
         linkedin
         workshop {
           title
-          
         }
         image {
           url(imgixParams: {fm: jpg, fit: crop, w: 300, h: 400})
@@ -77,10 +76,12 @@ export async function getAllWorkshops(): Promise<Workshop[]> {
   const data = await fetchCmsAPI(`
     {
       allWorkshops(first: 100) {
-        name
+        title
         description
         slug
-        mentor
+        mentor {
+          name
+        }
         location
         start
         end
