@@ -14,60 +14,44 @@
  * limitations under the License.
  */
 
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetStaticProps } from 'next';
 
 import Page from '@components/page';
-import SponsorSection from '@components/sponsor-section';
+import PartnersGrid from '@components/partners-grid';
+import Header from '@components/header';
 import Layout from '@components/layout';
 
-import { getAllSponsors } from '@lib/cms-api';
-import { Sponsor } from '@lib/types';
+import { getAllPartners } from '@lib/cms-api';
+import { Partner } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
-  sponsor: Sponsor;
+  partners: Partner[];
 };
 
-export default function SponsorPage({ sponsor }: Props) {
+export default function PartnersPage({ partners }: Props) {
   const meta = {
-    title: 'Demo - Virtual Event Starter Kit',
+    title: 'Partners - Annaba Techdays',
     description: META_DESCRIPTION
   };
 
   return (
     <Page meta={meta}>
       <Layout>
-        <SponsorSection sponsor={sponsor} />
+        <Header hero="Partners" description={meta.description} />
+        <PartnersGrid partners={partners} />
       </Layout>
     </Page>
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const slug = params?.slug;
-  const sponsors = await getAllSponsors();
-  const sponsor = sponsors.find((s: Sponsor) => s.slug === slug) || null;
-
-  if (!sponsor) {
-    return {
-      notFound: true
-    };
-  }
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const partners = await getAllPartners();
 
   return {
     props: {
-      sponsor
+      partners
     },
     revalidate: 60
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const sponsors = await getAllSponsors();
-  const slugs = sponsors.map((s: Sponsor) => ({ params: { slug: s.slug } }));
-
-  return {
-    paths: slugs,
-    fallback: 'blocking'
   };
 };

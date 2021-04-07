@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Job, Sponsor, Stage, Speaker } from '@lib/types';
+import { Job, Partner, Stage, Mentor, Workshop } from '@lib/types';
 
 const API_URL = 'https://graphql.datocms.com/';
 const API_TOKEN = process.env.DATOCMS_READ_ONLY_API_TOKEN;
@@ -41,20 +41,24 @@ async function fetchCmsAPI(query: string, { variables }: { variables?: Record<st
   return json.data;
 }
 
-export async function getAllSpeakers(): Promise<Speaker[]> {
+export async function getAllMentors(): Promise<Mentor[]> {
   const data = await fetchCmsAPI(`
     {
-      allSpeakers(first: 100) {
+      allMentors(first: 100) {
         name
         bio
         title
+        company
         slug
         twitter
         github
-        company
-        talk {
+        website
+        facebook
+        youtube
+        linkedin
+        workshop {
           title
-          description
+          
         }
         image {
           url(imgixParams: {fm: jpg, fit: crop, w: 300, h: 400})
@@ -66,7 +70,25 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
     }
   `);
 
-  return data.allSpeakers;
+  return data.allMentors;
+}
+
+export async function getAllWorkshops(): Promise<Workshop[]> {
+  const data = await fetchCmsAPI(`
+    {
+      allWorkshops(first: 100) {
+        name
+        description
+        slug
+        mentor
+        location
+        start
+        end
+      }
+    }
+  `);
+
+  return data.allWorkshops;
 }
 
 export async function getAllStages(): Promise<Stage[]> {
@@ -96,26 +118,14 @@ export async function getAllStages(): Promise<Stage[]> {
   return data.allStages;
 }
 
-export async function getAllSponsors(): Promise<Sponsor[]> {
+export async function getAllPartners(): Promise<Partner[]> {
   const data = await fetchCmsAPI(`
     {
-      allCompanies(first: 100, orderBy: tierRank_ASC) {
+      allPartners(first: 100) {
         name
         description
         slug
         website
-        callToAction
-        callToActionLink
-        discord
-        youtubeSlug
-        tier
-        links {
-          url
-          text
-        }
-        cardImage {
-          url(imgixParams: {fm: jpg, fit: crop})
-        }
         logo {
           url(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100})
         }
@@ -123,7 +133,7 @@ export async function getAllSponsors(): Promise<Sponsor[]> {
     }
   `);
 
-  return data.allCompanies;
+  return data.allPartners;
 }
 
 export async function getAllJobs(): Promise<Job[]> {

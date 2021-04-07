@@ -22,8 +22,8 @@
 }
 
 .layout {
-  display: flex;
-  flex-direction: column;
+  display: block;
+
   height: 100%;
 }
 
@@ -82,7 +82,7 @@
   display: block;
 }
 
-.sponsor-details {
+.partner-details {
   padding: var(--space-4x) 0 24px 0;
   display: flex;
   flex-direction: column;
@@ -196,7 +196,7 @@
 }
 
 @media (min-width: 500px) {
-  .sponsor-details {
+  .partner-details {
     flex-direction: row;
     padding: var(--space-4x) 0 var(--space-8x) 0;
   }

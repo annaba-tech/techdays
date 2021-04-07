@@ -18,8 +18,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import cn from 'classnames';
 import GithubIcon from '@components/icons/icon-github';
-import { Speaker } from '@lib/types';
-import styles from './speaker-section.module.css';
+import IconLinkedin from '@components/icons/icon-linkedin';
+import { Mentor } from '@lib/types';
+import styles from './mentor-section.module.css';
 
 const TwitterIcon = () => (
   <svg width={24} viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -31,13 +32,13 @@ const TwitterIcon = () => (
 );
 
 type Props = {
-  speaker: Speaker;
+  mentor: Mentor;
 };
 
-export default function SpeakerSection({ speaker }: Props) {
+export default function MentorSection({ mentor }: Props) {
   return (
     <>
-      <Link href="/speakers">
+      <Link href="/mentors">
         <a className={styles.backlink}>
           <svg
             viewBox="0 0 24 24"
@@ -52,35 +53,32 @@ export default function SpeakerSection({ speaker }: Props) {
           >
             <path d="M15 18l-6-6 6-6" />
           </svg>
-          Back to speakers
+          Back to mentors
         </a>
       </Link>
-      <div key={speaker.name} className={styles.container}>
+      <div key={mentor.name} className={styles.container}>
         <div style={{ minWidth: '300px' }}>
           <Image
-            alt={speaker.name}
-            title={speaker.name}
-            src={speaker.image.url}
+            alt={mentor.name}
+            title={mentor.name}
+            src={mentor.image.url}
             className={styles.image}
             loading="lazy"
             height={400}
             width={300}
           />
         </div>
-        <div className={styles['speaker-details']}>
+        <div className={styles['mentor-details']}>
           <div>
-            <h1 className={styles.name}>{speaker.name}</h1>
-            <p className={styles.title}>
-              {`${speaker.title} @ `}
-              <span className={styles.company}>{speaker.company}</span>
-            </p>
+            <h1 className={styles.name}>{mentor.name}</h1>
+            <p className={styles.title}>{mentor.title}</p>
             <h2 className={styles['bio-header']}>Bio</h2>
-            <p className={styles.bio}>{speaker.bio}</p>
+            <p dangerouslySetInnerHTML={{ __html: mentor.bio }} className={styles.bio}></p>
             <h3 className={styles['socials-header']}>Social Media</h3>
-            {speaker.twitter ? (
+            {mentor.twitter ? (
               <a
                 aria-label="Twitter"
-                href={speaker.twitter}
+                href={mentor.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -91,11 +89,11 @@ export default function SpeakerSection({ speaker }: Props) {
                 <TwitterIcon />
               </span>
             )}
-            {speaker.github ? (
+            {mentor.github ? (
               <a
                 aria-label="GitHub"
                 className={styles.githubIcon}
-                href={speaker.github}
+                href={mentor.github}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -106,13 +104,28 @@ export default function SpeakerSection({ speaker }: Props) {
                 <GithubIcon color="#D8D8D8" size={24} />
               </span>
             )}
+            {mentor.linkedin ? (
+              <a
+                aria-label="LinkedIn"
+                className={styles.linkedInIcon}
+                href={mentor.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IconLinkedin width={24} />
+              </a>
+            ) : (
+              <span className={cn(styles.linkedInIcon, styles.disabled)}>
+                <IconLinkedin width={24} />
+              </span>
+            )}
           </div>
         </div>
       </div>
-      {speaker.talk && (
-        <div className={styles['talk-details']}>
-          <h3 className={styles['socials-header']}>{speaker.talk.title}</h3>
-          <p>{speaker.talk.description}</p>
+      {mentor.workshop && (
+        <div className={styles['workshop-details']}>
+          <h3 className={styles['socials-header']}>{`Workshop: ${mentor.workshop.title}`}</h3>
+          <div>{mentor.workshop.description}</div>
         </div>
       )}
     </>

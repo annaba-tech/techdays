@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Job, Sponsor, Stage, Speaker } from '@lib/types';
+import { Job, Partner, Stage, Mentor, Workshop } from '@lib/types';
 
 import * as agilityApi from './cms-providers/agility';
 import * as datoCmsApi from './cms-providers/dato';
@@ -22,9 +22,10 @@ import * as prismicApi from './cms-providers/prismic';
 import * as storyblokApi from './cms-providers/storyblok';
 
 let cmsApi: {
-  getAllSpeakers: () => Promise<Speaker[]>;
+  getAllMentors: () => Promise<Mentor[]>;
+  getAllWorkshops: () => Promise<Workshop[]>;
   getAllStages: () => Promise<Stage[]>;
-  getAllSponsors: () => Promise<Sponsor[]>;
+  getAllPartners: () => Promise<Partner[]>;
   getAllJobs: () => Promise<Job[]>;
 };
 
@@ -44,23 +45,28 @@ if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
   cmsApi = agilityApi;
 } else {
   cmsApi = {
-    getAllSpeakers: async () => [],
+    getAllMentors: async () => [],
+    getAllWorkshops: async () => [],
     getAllStages: async () => [],
-    getAllSponsors: async () => [],
+    getAllPartners: async () => [],
     getAllJobs: async () => []
   };
 }
 
-export async function getAllSpeakers(): Promise<Speaker[]> {
-  return cmsApi.getAllSpeakers();
+export async function getAllMentors(): Promise<Mentor[]> {
+  return cmsApi.getAllMentors();
+}
+
+export async function getAllWorkshops(): Promise<Workshop[]> {
+  return cmsApi.getAllWorkshops();
 }
 
 export async function getAllStages(): Promise<Stage[]> {
   return cmsApi.getAllStages();
 }
 
-export async function getAllSponsors(): Promise<Sponsor[]> {
-  return cmsApi.getAllSponsors();
+export async function getAllPartners(): Promise<Partner[]> {
+  return cmsApi.getAllPartners();
 }
 
 export async function getAllJobs(): Promise<Job[]> {

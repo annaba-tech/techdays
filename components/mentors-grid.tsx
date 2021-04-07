@@ -16,38 +16,35 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Speaker } from '@lib/types';
-import styles from './speakers-grid.module.css';
+import { Mentor } from '@lib/types';
+import styles from './mentors-grid.module.css';
 
 type Props = {
-  speakers: Speaker[];
+  mentors: Mentor[];
 };
 
-export default function SpeakersGrid({ speakers }: Props) {
+export default function MentorsGrid({ mentors }: Props) {
   return (
     <div className={styles.grid}>
-      {speakers.map(speaker => (
-        <Link key={speaker.name} href={`/speakers/${speaker.slug}`}>
+      {mentors.map(mentor => (
+        <Link key={mentor.name} href={`/mentors/${mentor.slug}`}>
           <a role="button" tabIndex={0} className={styles.card}>
             <div className={styles.imageWrapper}>
               <Image
-                alt={speaker.name}
-                src={speaker.image.url}
+                alt={mentor.name}
+                src={mentor.image.url}
                 className={styles.image}
                 loading="lazy"
                 quality="50"
-                title={speaker.name}
+                title={mentor.name}
                 width={300}
                 height={300}
               />
             </div>
             <div className={styles.cardBody}>
               <div>
-                <h2 className={styles.name}>{speaker.name}</h2>
-                <p className={styles.title}>
-                  {`${speaker.title} @ `}
-                  <span className={styles.company}>{speaker.company}</span>
-                </p>
+                <h2 className={styles.name}>{mentor.name}</h2>
+                <p className={styles.title}>{mentor.title}</p>
               </div>
             </div>
           </a>

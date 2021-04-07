@@ -1,10 +1,10 @@
 {
-  "name": "virtual-event-starter-kit",
-  "description": "Starter kit for your virtual event.",
+  "name": "annaba-techdays-website",
+  "description": "Website for the 2nd edition of Annaba Techdays",
   "private": true,
-  "repository": "vercel/virtual-event-starter-kit",
-  "author": "Vercel Inc.",
-  "homepage": "https://demo.vercel.events",
+  "repository": "annaba-tech/techdays",
+  "author": "Annaba Tech",
+  "homepage": "https://www.annaba.tech/",
   "license": "Apache-2.0",
   "engines": {
     "node": "12.x"

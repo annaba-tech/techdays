@@ -36,14 +36,14 @@
   color: #fff;
 }
 
-.speaker-details {
+.mentor-details {
   padding: var(--space-4x) 0;
   display: flex;
   flex-direction: column;
   flex: unset;
 }
 
-.talk-details {
+.workshop-details {
   margin-top: var(--space-8x);
   padding: 0 var(--space-4x);
   max-width: 800px;
@@ -69,12 +69,12 @@
     padding-bottom: 0;
   }
 
-  .speaker-details {
+  .mentor-details {
     padding: 0;
     padding-left: var(--space-8x);
   }
 
-  .talk-details {
+  .workshop-details {
     padding-left: var(--space-8x);
     color: var(--accents-2);
   }
@@ -125,5 +125,9 @@
 }
 
 .githubIcon {
+  margin-left: var(--space-2x);
+}
+
+.linkedInIcon {
   margin-left: var(--space-2x);
 }

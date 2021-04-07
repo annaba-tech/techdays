@@ -14,43 +14,60 @@
  * limitations under the License.
  */
 
-import { GetStaticProps } from 'next';
+import { GetStaticProps, GetStaticPaths } from 'next';
 
 import Page from '@components/page';
-import SpeakersGrid from '@components/speakers-grid';
+import MentorSection from '@components/mentor-section';
 import Layout from '@components/layout';
-import Header from '@components/header';
 
-import { getAllSpeakers } from '@lib/cms-api';
-import { Speaker } from '@lib/types';
+import { getAllMentors } from '@lib/cms-api';
+import { Mentor } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
-  speakers: Speaker[];
+  mentor: Mentor;
 };
 
-export default function Speakers({ speakers }: Props) {
+export default function MentorPage({ mentor }: Props) {
   const meta = {
-    title: 'Speakers - Virtual Event Starter Kit',
+    title: `${mentor.name} - Annaba Techdays`,
     description: META_DESCRIPTION
   };
+
   return (
     <Page meta={meta}>
       <Layout>
-        <Header hero="Speakers" description={meta.description} />
-        <SpeakersGrid speakers={speakers} />
+        <MentorSection mentor={mentor} />
       </Layout>
     </Page>
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const speakers = await getAllSpeakers();
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const slug = params?.slug;
+  const mentors = await getAllMentors();
+  const currentMentor = mentors.find((s: Mentor) => s.slug === slug) || null;
+
+  if (!currentMentor) {
+    return {
+      notFound: true
+    };
+  }
 
   return {
     props: {
-      speakers
+      mentor: currentMentor
     },
     revalidate: 60
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const mentors = await getAllMentors();
+  const slugs = mentors.map((s: Mentor) => ({ params: { slug: s.slug } }));
+
+  return {
+    paths: slugs,
+    fallback: false
   };
 };

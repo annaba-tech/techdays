@@ -18,7 +18,7 @@ export type Image = {
   url: string;
 };
 
-export type Speaker = {
+export type Mentor = {
   name: string;
   bio: string;
   title: string;
@@ -26,7 +26,11 @@ export type Speaker = {
   twitter: string;
   github: string;
   company: string;
-  talk: Talk;
+  linkedin: string;
+  website: string;
+  facebook: string;
+  youtube: string;
+  workshop: Workshop;
   image: Image;
   imageSquare: Image;
 };
@@ -36,39 +40,28 @@ export type Stage = {
   slug: string;
   stream: string;
   discord: string;
-  schedule: Talk[];
+  schedule: Workshop[];
 };
 
-export type Talk = {
+export type Workshop = {
   title: string;
   description: string;
   start: string;
   end: string;
-  speaker: Speaker[];
+  location: string;
+  mentor: Mentor[];
 };
 
 export type Link = {
   url: string;
 };
 
-export type Sponsor = {
+export type Partner = {
   name: string;
   description: string;
   slug: string;
   website: string;
-  callToAction: string;
-  callToActionLink: string;
-  links: SponsorLink[];
-  discord: string;
-  tier: string;
-  cardImage: Image;
   logo: Image;
-  youtubeSlug: string;
-};
-
-export type SponsorLink = {
-  text: string;
-  url: string;
 };
 
 export type Job = {
