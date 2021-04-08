@@ -15,11 +15,7 @@
  */
 import { Job, Partner, Stage, Mentor, Workshop } from '@lib/types';
 
-import * as agilityApi from './cms-providers/agility';
 import * as datoCmsApi from './cms-providers/dato';
-import * as contentfulApi from './cms-providers/contentful';
-import * as prismicApi from './cms-providers/prismic';
-import * as storyblokApi from './cms-providers/storyblok';
 
 let cmsApi: {
   getAllMentors: () => Promise<Mentor[]>;
@@ -31,26 +27,6 @@ let cmsApi: {
 
 if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
   cmsApi = datoCmsApi;
-} else if (process.env.CONTENTFUL_ACCESS_TOKEN && process.env.CONTENTFUL_SPACE_ID) {
-  cmsApi = contentfulApi;
-} else if (process.env.STORYBLOK_PREVIEW_TOKEN) {
-  cmsApi = storyblokApi;
-} else if (process.env.PRISMIC_REPO_ID) {
-  cmsApi = prismicApi;
-} else if (
-  process.env.AGILITY_GUID &&
-  process.env.AGILITY_API_FETCH_KEY &&
-  process.env.AGILITY_API_PREVIEW_KEY
-) {
-  cmsApi = agilityApi;
-} else {
-  cmsApi = {
-    getAllMentors: async () => [],
-    getAllWorkshops: async () => [],
-    getAllStages: async () => [],
-    getAllPartners: async () => [],
-    getAllJobs: async () => []
-  };
 }
 
 export async function getAllMentors(): Promise<Mentor[]> {
