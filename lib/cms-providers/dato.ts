@@ -80,6 +80,7 @@ export async function getAllWorkshops(): Promise<Workshop[]> {
         description
         slug
         mentor {
+          slug
           name
           title
           image {

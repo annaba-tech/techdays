@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import Image from 'next/image';
 import Link from 'next/link';
 import { Workshop } from '@lib/types';
 import styles from './workshop-section.module.css';
@@ -47,13 +47,33 @@ export default function WorkshopSection({ workshop }: Props) {
         <div className={styles['workshop-details']}>
           <div>
             <h1 className={styles.title}>{workshop.title}</h1>
+            <h2 className={styles['description-header']}>Overview</h2>
             <p className={styles.description}>{workshop.description}</p>
+            <h2 className={styles['description-header']}>Mentor</h2>
+            <Link key={workshop.mentor.name} href={`/mentors/${workshop.mentor.slug}`}>
+              <a role="button" tabIndex={0} className={styles.card}>
+                <div className={styles.imageWrapper}>
+                  <Image
+                    alt={workshop.mentor.name}
+                    src={workshop.mentor.image.url}
+                    className={styles.image}
+                    loading="lazy"
+                    quality="50"
+                    title={workshop.mentor.name}
+                    width={300}
+                    height={300}
+                  />
+                </div>
+                <div className={styles.cardBody}>
+                  <div>
+                    <h2 className={styles.mentorName}>{workshop.mentor.name}</h2>
+                    <p className={styles.mentorTitle}>{workshop.mentor.title}</p>
+                  </div>
+                </div>
+              </a>
+            </Link>
           </div>
         </div>
-      </div>
-
-      <div className={styles['workshop-details']}>
-        <h3 className={styles['socials-header']}>{`Mentor: ${workshop.mentor.name}`}</h3>
       </div>
     </>
   );
