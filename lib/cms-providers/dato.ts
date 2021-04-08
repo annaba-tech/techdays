@@ -81,10 +81,17 @@ export async function getAllWorkshops(): Promise<Workshop[]> {
         slug
         mentor {
           name
+          title
+          image {
+            url
+          }
         }
         location
         start
         end
+        image {
+          url(imgixParams: {fm: jpg, fit: crop, w: 120, h: 120})
+        }
       }
     }
   `);

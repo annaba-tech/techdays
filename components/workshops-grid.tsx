@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import Image from 'next/image';
 import Link from 'next/link';
 import { Workshop } from '@lib/types';
 import styles from './workshops-grid.module.css';
@@ -28,6 +28,18 @@ export default function WorkshopsGrid({ workshops }: Props) {
       {workshops.map(workshop => (
         <Link key={workshop.title} href={`/workshops/${workshop.slug}`}>
           <a role="button" tabIndex={0} className={styles.card}>
+            <div className={styles.imageWrapper}>
+              <Image
+                alt={workshop.title}
+                src={workshop.image.url}
+                className={styles.image}
+                loading="lazy"
+                quality="50"
+                title={workshop.title}
+                width={300}
+                height={300}
+              />
+            </div>
             <div className={styles.cardBody}>
               <div>
                 <h2 className={styles.name}>{workshop.title}</h2>

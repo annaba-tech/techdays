@@ -51,6 +51,7 @@ export type Workshop = {
   end: string;
   location: string;
   mentor: Mentor;
+  image: Image;
 };
 
 export type Link = {
