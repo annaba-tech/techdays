@@ -18,34 +18,23 @@ import cn from 'classnames';
 import styleUtils from './utils.module.css';
 import styles from './hero.module.css';
 import { BRAND_NAME, DATE, SITE_DESCRIPTION } from '@lib/constants';
+import Image from 'next/image';
 
 export default function Hero() {
   return (
     <div className={styles.wrapper}>
-      <h2
-        className={cn(
-          styleUtils.appear,
-          styleUtils['appear-third'],
-          styleUtils['show-on-mobile'],
-          styles.description
-        )}
-      >
-        {SITE_DESCRIPTION}
-      </h2>
-      <h1 className={cn(styleUtils.appear, styleUtils['appear-third'], styles.hero)}>
-        Annaba Techdays
-        <br className={styleUtils['show-on-desktop']} /> 2nd Edition
-      </h1>
-      <h2
-        className={cn(
-          styleUtils.appear,
-          styleUtils['appear-third'],
-          styleUtils['show-on-tablet'],
-          styles.description
-        )}
-      >
-        {SITE_DESCRIPTION}
-      </h2>
+      <div className={cn(styleUtils.appear, styleUtils['appear-third'], styles.logo)}>
+        <Image alt="annabatech logo" src="/g27.png" height={169} width={500} />
+        <h2 className={styles.edition}>
+          2<sup>nd</sup> Edition
+        </h2>
+      </div>
+
+      <p className={cn(styleUtils.appear, styleUtils['appear-third'], styles.hero)}>
+        Toward a Community of Problem Solvers
+        <br className={styleUtils['show-on-desktop']} />
+      </p>
+
       <div className={cn(styleUtils.appear, styleUtils['appear-fourth'], styles.info)}>
         <p>{DATE}</p>
         <div className={styles['description-separator']} />
@@ -53,6 +42,14 @@ export default function Hero() {
           <strong>Sheraton Hotel, Annaba</strong>
         </p>
       </div>
+      <a
+        className={cn(styleUtils.appear, styleUtils['appear-fifth'], styles.registration)}
+        href="https://annabatechday.eventbrite.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        REGISTER
+      </a>
     </div>
   );
 }
