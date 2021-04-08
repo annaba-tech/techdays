@@ -30,7 +30,8 @@ export type Mentor = {
   website: string;
   facebook: string;
   youtube: string;
-  workshop: Workshop;
+  workshop: Workshop[];
+  talk: Talk[];
   image: Image;
   imageSquare: Image;
 };

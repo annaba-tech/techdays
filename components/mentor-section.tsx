@@ -166,12 +166,74 @@ export default function MentorSection({ mentor }: Props) {
           </div>
         </div>
       </div>
-      {mentor.workshop && (
-        <div className={styles['workshop-details']}>
-          <h3 className={styles['socials-header']}>{`Workshop: ${mentor.workshop.title}`}</h3>
-          <div>{mentor.workshop.description}</div>
-        </div>
-      )}
+      <div className={styles['talks-section']}>
+        {mentor.talk.length > 0 && (
+          <>
+            <h2 className={styles['talk-header']}>{mentor.talk.length > 1 ? 'Talks' : 'Talk'}</h2>
+            <div className={styles['talks-grid']}>
+              {mentor.talk.map(talk => (
+                <div className={styles['talks-grid']}>
+                  <Link key={talk.title} href={`/talks/${talk.slug}`}>
+                    <a role="button" tabIndex={0} className={styles.card}>
+                      <div className={styles.talkImageWrapper}>
+                        <Image
+                          alt={talk.title}
+                          src={talk.image.url}
+                          className={styles.talkImage}
+                          loading="lazy"
+                          quality="50"
+                          title={talk.title}
+                          width={300}
+                          height={300}
+                        />
+                      </div>
+                      <div className={styles.cardBody}>
+                        <div>
+                          <h2 className={styles.talkTitle}>{talk.title}</h2>
+                          <p className={styles.talkDescription}>{talk.description}</p>
+                        </div>
+                      </div>
+                    </a>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+        {mentor.workshop.length > 0 && (
+          <>
+            <h2 className={styles['talk-header']}>
+              {mentor.workshop.length > 1 ? 'Workshops' : 'Workshop'}
+            </h2>
+            <div className={styles['talks-grid']}>
+              {mentor.workshop.map(workshop => (
+                <Link key={workshop.title} href={`/workshops/${workshop.slug}`}>
+                  <a role="button" tabIndex={0} className={styles.card}>
+                    <div className={styles.talkImageWrapper}>
+                      <Image
+                        alt={workshop.title}
+                        src={workshop.image.url}
+                        className={styles.talkImage}
+                        loading="lazy"
+                        quality="50"
+                        title={workshop.title}
+                        width={300}
+                        height={300}
+                      />
+                    </div>
+                    <div className={styles.cardBody}>
+                      <div>
+                        <h2 className={styles.talkTitle}>{workshop.title}</h2>
+                        <p className={styles.talkDescription}>{workshop.description}</p>
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 }

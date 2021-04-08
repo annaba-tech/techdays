@@ -43,12 +43,6 @@
   flex: unset;
 }
 
-.workshop-details {
-  margin-top: var(--space-8x);
-  padding: 0 var(--space-4x);
-  max-width: 800px;
-}
-
 .bio {
   color: var(--accents-2);
   max-width: 800px;
@@ -64,6 +58,13 @@
   font-size: 40px;
   margin: 0;
   line-height: 1.2;
+}
+
+.talks-grid {
+  gap: 20px;
+  display: inline-grid;
+  grid-auto-flow: row;
+  margin-bottom: 10px;
 }
 
 @media (min-width: 768px) {
@@ -94,6 +95,10 @@
 
   .name {
     font-size: 56px;
+  }
+
+  .talks-grid {
+    grid-auto-flow: column;
   }
 }
 
@@ -134,4 +139,71 @@
 
 .social-icons a:first-child {
   margin-left: 0;
+}
+
+.talks-section {
+  padding: 0 var(--space-4x);
+}
+
+.talk-header {
+  font-size: 30px;
+  letter-spacing: -0.05em;
+  color: #fff;
+}
+
+.card {
+  max-width: 200px;
+  border-radius: var(--space-2x);
+  background: #111111;
+  display: flex;
+  flex-direction: column;
+  background-clip: content-box, border-box;
+  background-image: linear-gradient(#111111, #111111), linear-gradient(to right, #333333, #333333);
+  padding: 1px;
+  cursor: pointer;
+}
+
+.card:hover,
+.card:focus {
+  outline: none;
+  background-image: linear-gradient(#111111, #111111),
+    linear-gradient(to right, var(--brand), var(--brand));
+}
+
+.cardBody {
+  padding: var(--space-4x);
+  color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.talkImageWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.talkImage {
+  object-fit: cover;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+@media (max-width: 471px) {
+  .talkImageWrapper > div {
+    width: 100% !important;
+  }
+}
+
+.talkTitle {
+  font-weight: bold;
+  color: #f1f1f1;
+  font-size: 20px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.talkDescription {
+  margin: 0;
 }

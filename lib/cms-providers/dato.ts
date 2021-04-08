@@ -58,6 +58,19 @@ export async function getAllMentors(): Promise<Mentor[]> {
         linkedin
         workshop {
           title
+          slug
+          description
+          image {
+            url
+          }
+        }
+        talk {
+          title
+          slug
+          description
+          image {
+            url
+          }
         }
         image {
           url(imgixParams: {fm: jpg, fit: crop, w: 300, h: 400})
