@@ -58,6 +58,14 @@
   border-radius: var(--space-2x);
 }
 
+.title {
+  font-weight: 800;
+  color: #fff;
+  font-size: 40px;
+  margin: 0;
+  line-height: 1.2;
+}
+
 @media (min-width: 768px) {
   .container {
     flex-direction: row;
@@ -83,14 +91,10 @@
     max-width: 300px;
     max-height: 400px;
   }
-}
 
-.title {
-  font-weight: 800;
-  color: #fff;
-  font-size: 56px;
-  margin: 0;
-  line-height: 1.2;
+  .title {
+    font-size: 56px;
+  }
 }
 
 .company {
