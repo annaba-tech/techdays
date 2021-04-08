@@ -1,0 +1,80 @@
+/**
+ * Copyright 2020 Vercel Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import Image from 'next/image';
+import Link from 'next/link';
+import { Talk } from '@lib/types';
+import styles from './talk-section.module.css';
+
+type Props = {
+  talk: Talk;
+};
+
+export default function TalkSection({ talk }: Props) {
+  return (
+    <>
+      <Link href="/talks">
+        <a className={styles.backlink}>
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+            shapeRendering="geometricPrecision"
+          >
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+          Back to Talks
+        </a>
+      </Link>
+      <div key={talk.title} className={styles.container}>
+        <div className={styles['talk-details']}>
+          <div>
+            <h1 className={styles.title}>{talk.title}</h1>
+            <h2 className={styles['description-header']}>Overview</h2>
+            <p className={styles.description}>{talk.description}</p>
+            <h2 className={styles['description-header']}>Mentor</h2>
+            <Link key={talk.mentor.name} href={`/mentors/${talk.mentor.slug}`}>
+              <a role="button" tabIndex={0} className={styles.card}>
+                <div className={styles.imageWrapper}>
+                  <Image
+                    alt={talk.mentor.name}
+                    src={talk.mentor.image.url}
+                    className={styles.image}
+                    loading="lazy"
+                    quality="50"
+                    title={talk.mentor.name}
+                    width={300}
+                    height={300}
+                  />
+                </div>
+                <div className={styles.cardBody}>
+                  <div>
+                    <h2 className={styles.mentorName}>{talk.mentor.name}</h2>
+                    <p className={styles.mentorTitle}>{talk.mentor.title}</p>
+                  </div>
+                </div>
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

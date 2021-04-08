@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Job, Partner, Stage, Mentor, Workshop } from '@lib/types';
+import { Job, Partner, Stage, Mentor, Workshop, Talk } from '@lib/types';
 
 import * as datoCmsApi from './cms-providers/dato';
 
 let cmsApi: {
   getAllMentors: () => Promise<Mentor[]>;
   getAllWorkshops: () => Promise<Workshop[]>;
+  getAllTalks: () => Promise<Talk[]>;
   getAllStages: () => Promise<Stage[]>;
   getAllPartners: () => Promise<Partner[]>;
   getAllJobs: () => Promise<Job[]>;
@@ -35,6 +36,10 @@ export async function getAllMentors(): Promise<Mentor[]> {
 
 export async function getAllWorkshops(): Promise<Workshop[]> {
   return cmsApi.getAllWorkshops();
+}
+
+export async function getAllTalks(): Promise<Talk[]> {
+  return cmsApi.getAllTalks();
 }
 
 export async function getAllStages(): Promise<Stage[]> {

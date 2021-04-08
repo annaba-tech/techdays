@@ -1,0 +1,158 @@
+/**
+ * Copyright 2020 Vercel Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.container {
+  padding: var(--space-4x);
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.backlink {
+  color: var(--secondary-color);
+  padding: var(--space-8x) var(--space-4x) var(--space-4x) var(--space-4x);
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.backlink > svg {
+  margin-right: var(--space-2x);
+}
+
+.backlink:hover {
+  color: #fff;
+}
+
+.talk-details {
+  margin-top: var(--space-8x);
+  padding: 0 var(--space-4x);
+  max-width: 800px;
+}
+
+.description {
+  color: var(--accents-2);
+  max-width: 800px;
+}
+
+.image {
+  border-radius: var(--space-2x);
+}
+
+.title {
+  font-weight: 800;
+  color: #fff;
+  font-size: 40px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    padding: var(--space-8x);
+  }
+
+  .backlink {
+    padding: var(--space-8x);
+    padding-bottom: 0;
+  }
+
+  .talk-details {
+    padding-left: var(--space-8x);
+    color: var(--accents-2);
+  }
+
+  .image {
+    max-width: 300px;
+    max-height: 400px;
+  }
+
+  .title {
+    font-size: 56px;
+  }
+}
+
+.description-header {
+  margin-top: 30px;
+  font-size: 30px;
+  letter-spacing: -0.05em;
+  color: #fff;
+}
+
+.mentor-header {
+  margin-top: 30px;
+  font-size: 30px;
+  letter-spacing: -0.05em;
+  color: #fff;
+}
+
+.card {
+  margin-top: 30px;
+  max-width: 200px;
+  border-radius: var(--space-2x);
+  background: #111111;
+  display: flex;
+  flex-direction: column;
+  background-clip: content-box, border-box;
+  background-image: linear-gradient(#111111, #111111), linear-gradient(to right, #333333, #333333);
+  padding: 1px;
+  cursor: pointer;
+}
+
+.card:hover,
+.card:focus {
+  outline: none;
+  background-image: linear-gradient(#111111, #111111),
+    linear-gradient(to right, var(--brand), var(--brand));
+}
+
+.cardBody {
+  padding: var(--space-4x);
+  color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  object-fit: cover;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+@media (max-width: 471px) {
+  .imageWrapper > div {
+    width: 100% !important;
+  }
+}
+
+.mentorName {
+  font-weight: bold;
+  color: #f1f1f1;
+  font-size: 20px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.mentorTitle {
+  margin: 0;
+}

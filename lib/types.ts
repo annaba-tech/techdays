@@ -54,6 +54,17 @@ export type Workshop = {
   image: Image;
 };
 
+export type Talk = {
+  title: string;
+  description: string;
+  slug: string;
+  start: string;
+  end: string;
+  location: string;
+  mentor: Mentor;
+  image: Image;
+};
+
 export type Link = {
   url: string;
 };

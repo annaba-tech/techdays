@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Job, Partner, Stage, Mentor, Workshop } from '@lib/types';
+import { Job, Partner, Stage, Mentor, Workshop, Talk } from '@lib/types';
 
 const API_URL = 'https://graphql.datocms.com/';
 const API_TOKEN = process.env.DATOCMS_READ_ONLY_API_TOKEN;
@@ -91,13 +91,41 @@ export async function getAllWorkshops(): Promise<Workshop[]> {
         start
         end
         image {
-          url(imgixParams: {fm: jpg, fit: crop, w: 120, h: 120})
+          url
         }
       }
     }
   `);
 
   return data.allWorkshops;
+}
+
+export async function getAllTalks(): Promise<Talk[]> {
+  const data = await fetchCmsAPI(`
+    {
+      allTalks(first: 100) {
+        title
+        description
+        slug
+        mentor {
+          slug
+          name
+          title
+          image {
+            url
+          }
+        }
+        location
+        start
+        end
+        image {
+          url
+        }
+      }
+    }
+  `);
+
+  return data.allTalks;
 }
 
 export async function getAllStages(): Promise<Stage[]> {
@@ -136,7 +164,7 @@ export async function getAllPartners(): Promise<Partner[]> {
         slug
         website
         logo {
-          url(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100})
+          url
         }
       }
     }

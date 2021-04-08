@@ -44,12 +44,16 @@ export const NAVIGATION = [
     route: '/schedule'
   },
   {
-    name: 'Mentors',
-    route: '/mentors'
+    name: 'Talks',
+    route: '/talks'
   },
   {
     name: 'Workshops',
     route: '/workshops'
+  },
+  {
+    name: 'Mentors',
+    route: '/mentors'
   },
   {
     name: 'Partners',
