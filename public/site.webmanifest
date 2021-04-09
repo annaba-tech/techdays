@@ -1,7 +1,7 @@
 {
-  "name": "Virtual Event Starter Kit",
-  "short_name": "Virtual Event Starter Kit",
-  "description": "Virtual Event Starter Kit -> https://demo.vercel.events",
+  "name": "Annaba Tech Days",
+  "short_name": "Annaba Tech Days",
+  "description": "Annaba Tech Days -> https://annaba.tech",
   "display": "standalone",
   "start_url": "/",
   "theme_color": "#fff",
