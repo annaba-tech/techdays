@@ -59,6 +59,13 @@
   line-height: 1.2;
 }
 
+.mentors-grid {
+  gap: 20px;
+  display: inline-grid;
+  grid-auto-flow: row;
+  margin-bottom: 10px;
+}
+
 @media (min-width: 768px) {
   .container {
     flex-direction: row;
@@ -82,6 +89,10 @@
 
   .title {
     font-size: 56px;
+  }
+
+  .mentors-grid {
+    grid-auto-flow: column;
   }
 }
 

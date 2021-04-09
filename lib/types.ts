@@ -62,7 +62,7 @@ export type Talk = {
   start: string;
   end: string;
   location: string;
-  mentor: Mentor;
+  mentor: Mentor[];
   image: Image;
 };
 

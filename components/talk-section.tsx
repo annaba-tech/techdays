@@ -49,29 +49,35 @@ export default function TalkSection({ talk }: Props) {
             <h1 className={styles.title}>{talk.title}</h1>
             <h2 className={styles['description-header']}>Overview</h2>
             <p className={styles.description}>{talk.description}</p>
-            <h2 className={styles['description-header']}>Mentor</h2>
-            <Link key={talk.mentor.name} href={`/mentors/${talk.mentor.slug}`}>
-              <a role="button" tabIndex={0} className={styles.card}>
-                <div className={styles.imageWrapper}>
-                  <Image
-                    alt={talk.mentor.name}
-                    src={talk.mentor.image.url}
-                    className={styles.image}
-                    loading="lazy"
-                    quality="50"
-                    title={talk.mentor.name}
-                    width={300}
-                    height={300}
-                  />
-                </div>
-                <div className={styles.cardBody}>
-                  <div>
-                    <h2 className={styles.mentorName}>{talk.mentor.name}</h2>
-                    <p className={styles.mentorTitle}>{talk.mentor.title}</p>
-                  </div>
-                </div>
-              </a>
-            </Link>
+            <h2 className={styles['description-header']}>
+              {talk.mentor.length > 1 ? 'Mentors' : 'Mentor'}
+            </h2>
+            <div className={styles['mentors-grid']}>
+              {talk.mentor.map(mentor => (
+                <Link key={mentor.name} href={`/mentors/${mentor.slug}`}>
+                  <a role="button" tabIndex={0} className={styles.card}>
+                    <div className={styles.imageWrapper}>
+                      <Image
+                        alt={mentor.name}
+                        src={mentor.image.url}
+                        className={styles.image}
+                        loading="lazy"
+                        quality="50"
+                        title={mentor.name}
+                        width={300}
+                        height={300}
+                      />
+                    </div>
+                    <div className={styles.cardBody}>
+                      <div>
+                        <h2 className={styles.mentorName}>{mentor.name}</h2>
+                        <p className={styles.mentorTitle}>{mentor.title}</p>
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
