@@ -23,7 +23,6 @@ import Layout from '@components/layout';
 
 import { getAllPartners } from '@lib/cms-api';
 import { Partner } from '@lib/types';
-import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
   partners: Partner[];
@@ -32,7 +31,7 @@ type Props = {
 export default function PartnersPage({ partners }: Props) {
   const meta = {
     title: 'Partners - Annaba Techdays',
-    description: META_DESCRIPTION
+    description: 'Meet our event partners.'
   };
 
   return (

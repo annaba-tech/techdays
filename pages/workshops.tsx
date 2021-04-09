@@ -23,7 +23,6 @@ import Header from '@components/header';
 
 import { getAllWorkshops } from '@lib/cms-api';
 import { Talk } from '@lib/types';
-import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
   workshops: Talk[];
@@ -32,7 +31,7 @@ type Props = {
 export default function Workshops({ workshops }: Props) {
   const meta = {
     title: 'Workshops - Annaba Techdays',
-    description: META_DESCRIPTION
+    description: "Various workshops to meet everyone's interests."
   };
   return (
     <Page meta={meta}>

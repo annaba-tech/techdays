@@ -22,8 +22,7 @@ import Header from '@components/header';
 import Layout from '@components/layout';
 
 import { getAllWorkshops, getAllTalks } from '@lib/cms-api';
-import { Stage, Talk } from '@lib/types';
-import { META_DESCRIPTION } from '@lib/constants';
+import { Stage } from '@lib/types';
 
 type Props = {
   allStages: Stage[];
@@ -32,7 +31,8 @@ type Props = {
 export default function SchedulePage({ allStages }: Props) {
   const meta = {
     title: 'Schedule - Annaba Techdays',
-    description: META_DESCRIPTION
+    description:
+      'Event starts at 08:30am. Day 01 will feature a mix of talks and workshops. Day 02 schedule will be announced during Day 01.'
   };
 
   return (

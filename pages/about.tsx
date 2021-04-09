@@ -22,7 +22,7 @@ import Layout from '@components/layout';
 export default function AboutPage() {
   const meta = {
     title: 'About - Annaba Techdays',
-    description: 'Toward a community of problem solvers'
+    description: 'Toward a community of problem solvers.'
   };
 
   return (

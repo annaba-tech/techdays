@@ -23,7 +23,6 @@ import Header from '@components/header';
 
 import { getAllMentors } from '@lib/cms-api';
 import { Mentor } from '@lib/types';
-import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
   mentors: Mentor[];
@@ -32,7 +31,7 @@ type Props = {
 export default function Mentors({ mentors }: Props) {
   const meta = {
     title: 'Mentors - Annaba Techdays',
-    description: META_DESCRIPTION
+    description: 'Learn more about our event mentors.'
   };
   return (
     <Page meta={meta}>
