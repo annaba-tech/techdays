@@ -35,11 +35,41 @@ export default function SchedulePage({ allStages }: Props) {
       'Event starts at 08:30am. Day 01 will feature a mix of talks and workshops. Day 02 schedule will be announced during Day 01.'
   };
 
+  const opening = {
+    name: 'Opening',
+    schedule: [
+      {
+        title: 'Welcoming participants',
+        start: '2021-04-10T08:30:00+01:00',
+        end: '2021-04-10T09:00:00+01:00'
+      },
+      {
+        title: 'National anthem',
+        start: '2021-04-10T09:05:00+01:00',
+        end: '2021-04-10T09:10:00+01:00'
+      },
+      {
+        title: 'Welcome word',
+        start: '2021-04-10T09:10:00+01:00',
+        end: '2021-04-10T09:15:00+01:00'
+      },
+      {
+        title: 'Official opening announcement ',
+        start: '2021-04-10T09:15:00+01:00',
+        end: '2021-04-10T09:30:00+01:00'
+      },
+      {
+        title: 'Mohamed Salah TOURAB: Annaba as a tech hub ',
+        start: '2021-04-10T09:30:00+01:00',
+        end: '2021-04-10T10:00:30+01:00'
+      }
+    ]
+  };
   return (
     <Page meta={meta}>
       <Layout>
         <Header hero="Schedule" description={meta.description} />
-        <Schedule allStages={allStages} />
+        <Schedule allStages={[opening, ...allStages]} />
       </Layout>
     </Page>
   );
@@ -50,8 +80,16 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const allTalks = await getAllTalks();
 
   const allStages = [
-    { name: 'Talks', schedule: allTalks.filter(s => s.start && s.end) },
-    { name: 'Workshops', schedule: allWorkshops.filter(s => s.start && s.end) }
+    {
+      name: 'Talks',
+      schedule: allTalks.filter(s => s.start && s.end).sort((a, b) => (a.start < b.start ? -1 : 1))
+    },
+    {
+      name: 'Workshops',
+      schedule: allWorkshops
+        .filter(s => s.start && s.end)
+        .sort((a, b) => (a.start < b.start ? -1 : 1))
+    }
   ];
   return {
     props: {
