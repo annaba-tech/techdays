@@ -69,7 +69,7 @@ export default function PartnerSection({ partner }: Props) {
               rel="noopener noreferrer"
               className={cn(styles.button, styles['button-resource'])}
             >
-              <span className={styles.truncate}>Website</span>
+              <span className={styles.truncate}>Learn More</span>
               <svg
                 viewBox="0 0 24 24"
                 width="16"
