@@ -13,9 +13,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import cn from 'classnames';
+import { Stage, Talk } from '@lib/types';
+import TalkCard from './talk-card';
 import styles from './schedule.module.css';
 
-export default function Schedule() {
-  return <div></div>;
+function StageRow({ stage }: { stage: Stage }) {
+  // Group talks by the time block
+  const timeBlocks = stage.schedule.reduce((allBlocks: any, talk) => {
+    allBlocks[talk.start] = [...(allBlocks[talk.start] || []), talk];
+    return allBlocks;
+  }, {});
+
+  return (
+    <div key={stage.name} className={styles.row}>
+      <h3 className={cn(styles['stage-name'])}>
+        <span>{stage.name}</span>
+      </h3>
+      <div className={cn(styles.talks)}>
+        {Object.keys(timeBlocks).map((startTime: string) => (
+          <div key={startTime}>
+            {timeBlocks[startTime]
+              .sort((a: Talk, b: Talk) => (a.location > b.location ? 1 : -1))
+              .map((talk: Talk, index: number) => (
+                <TalkCard key={talk.title} talk={talk} showTime={index === 0} stage={stage.name} />
+              ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+type Props = {
+  allStages: Stage[];
+};
+
+export default function Schedule({ allStages }: Props) {
+  return (
+    <div className={styles.container}>
+      <div className={styles['row-wrapper']}>
+        {allStages.map(stage => (
+          <StageRow key={stage.name} stage={stage} />
+        ))}
+      </div>
+    </div>
+  );
 }

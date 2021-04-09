@@ -21,11 +21,11 @@ import WorkshopSection from '@components/workshop-section';
 import Layout from '@components/layout';
 
 import { getAllWorkshops } from '@lib/cms-api';
-import { Workshop } from '@lib/types';
+import { Talk } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
-  workshop: Workshop;
+  workshop: Talk;
 };
 
 export default function WorkshopPage({ workshop }: Props) {
@@ -46,7 +46,7 @@ export default function WorkshopPage({ workshop }: Props) {
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = params?.slug;
   const workshops = await getAllWorkshops();
-  const currentWorkshop = workshops.find((s: Workshop) => s.slug === slug) || null;
+  const currentWorkshop = workshops.find((s: Talk) => s.slug === slug) || null;
 
   if (!currentWorkshop) {
     return {
@@ -64,7 +64,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const workshops = await getAllWorkshops();
-  const slugs = workshops.map((s: Workshop) => ({ params: { slug: s.slug } }));
+  const slugs = workshops.map((s: Talk) => ({ params: { slug: s.slug } }));
 
   return {
     paths: slugs,

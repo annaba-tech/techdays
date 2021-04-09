@@ -15,11 +15,11 @@
  */
 import Image from 'next/image';
 import Link from 'next/link';
-import { Workshop } from '@lib/types';
+import { Talk } from '@lib/types';
 import styles from './workshop-section.module.css';
 
 type Props = {
-  workshop: Workshop;
+  workshop: Talk;
 };
 
 export default function WorkshopSection({ workshop }: Props) {
@@ -49,29 +49,35 @@ export default function WorkshopSection({ workshop }: Props) {
             <h1 className={styles.title}>{workshop.title}</h1>
             <h2 className={styles['description-header']}>Overview</h2>
             <p className={styles.description}>{workshop.description}</p>
-            <h2 className={styles['description-header']}>Mentor</h2>
-            <Link key={workshop.mentor.name} href={`/mentors/${workshop.mentor.slug}`}>
-              <a role="button" tabIndex={0} className={styles.card}>
-                <div className={styles.imageWrapper}>
-                  <Image
-                    alt={workshop.mentor.name}
-                    src={workshop.mentor.image.url}
-                    className={styles.image}
-                    loading="lazy"
-                    quality="50"
-                    title={workshop.mentor.name}
-                    width={300}
-                    height={300}
-                  />
-                </div>
-                <div className={styles.cardBody}>
-                  <div>
-                    <h2 className={styles.mentorName}>{workshop.mentor.name}</h2>
-                    <p className={styles.mentorTitle}>{workshop.mentor.title}</p>
-                  </div>
-                </div>
-              </a>
-            </Link>
+            <h2 className={styles['description-header']}>
+              {workshop.mentor.length > 1 ? 'Mentors' : 'Mentor'}
+            </h2>
+            <div className={styles['mentors-grid']}>
+              {workshop.mentor.map(mentor => (
+                <Link key={mentor.name} href={`/mentors/${mentor.slug}`}>
+                  <a role="button" tabIndex={0} className={styles.card}>
+                    <div className={styles.imageWrapper}>
+                      <Image
+                        alt={mentor.name}
+                        src={mentor.image.url}
+                        className={styles.image}
+                        loading="lazy"
+                        quality="50"
+                        title={mentor.name}
+                        width={300}
+                        height={300}
+                      />
+                    </div>
+                    <div className={styles.cardBody}>
+                      <div>
+                        <h2 className={styles.mentorName}>{mentor.name}</h2>
+                        <p className={styles.mentorTitle}>{mentor.title}</p>
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

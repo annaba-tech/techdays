@@ -38,10 +38,7 @@ export type Mentor = {
 
 export type Stage = {
   name: string;
-  slug: string;
-  stream: string;
-  discord: string;
-  schedule: Workshop[];
+  schedule: Talk[];
 };
 
 export type Workshop = {

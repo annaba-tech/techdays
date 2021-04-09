@@ -14,14 +14,22 @@
  * limitations under the License.
  */
 
+import { GetStaticProps } from 'next';
+
 import Page from '@components/page';
 import Schedule from '@components/schedule';
 import Header from '@components/header';
 import Layout from '@components/layout';
 
+import { getAllWorkshops, getAllTalks } from '@lib/cms-api';
+import { Stage, Talk } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
-export default function AboutPage() {
+type Props = {
+  allStages: Stage[];
+};
+
+export default function SchedulePage({ allStages }: Props) {
   const meta = {
     title: 'Schedule - Annaba Techdays',
     description: META_DESCRIPTION
@@ -31,8 +39,24 @@ export default function AboutPage() {
     <Page meta={meta}>
       <Layout>
         <Header hero="Schedule" description={meta.description} />
-        <Schedule />
+        <Schedule allStages={allStages} />
       </Layout>
     </Page>
   );
 }
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const allWorkshops = await getAllWorkshops();
+  const allTalks = await getAllTalks();
+
+  const allStages = [
+    { name: 'Talks', schedule: allTalks.filter(s => s.start && s.end) },
+    { name: 'Workshops', schedule: allWorkshops.filter(s => s.start && s.end) }
+  ];
+  return {
+    props: {
+      allStages
+    },
+    revalidate: 60
+  };
+};

@@ -15,11 +15,11 @@
  */
 import Image from 'next/image';
 import Link from 'next/link';
-import { Workshop } from '@lib/types';
+import { Talk } from '@lib/types';
 import styles from './workshops-grid.module.css';
 
 type Props = {
-  workshops: Workshop[];
+  workshops: Talk[];
 };
 
 export default function WorkshopsGrid({ workshops }: Props) {

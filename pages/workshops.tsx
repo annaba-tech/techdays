@@ -22,11 +22,11 @@ import Layout from '@components/layout';
 import Header from '@components/header';
 
 import { getAllWorkshops } from '@lib/cms-api';
-import { Workshop } from '@lib/types';
+import { Talk } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
-  workshops: Workshop[];
+  workshops: Talk[];
 };
 
 export default function Workshops({ workshops }: Props) {
