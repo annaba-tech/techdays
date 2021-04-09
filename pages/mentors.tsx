@@ -20,7 +20,7 @@ import Page from '@components/page';
 import MentorsGrid from '@components/mentors-grid';
 import Layout from '@components/layout';
 import Header from '@components/header';
-
+import { META_DESCRIPTION } from '@lib/constants';
 import { getAllMentors } from '@lib/cms-api';
 import { Mentor } from '@lib/types';
 
@@ -31,12 +31,12 @@ type Props = {
 export default function Mentors({ mentors }: Props) {
   const meta = {
     title: 'Mentors - Annaba Techdays',
-    description: 'Learn more about our event mentors.'
+    description: META_DESCRIPTION
   };
   return (
     <Page meta={meta}>
       <Layout>
-        <Header hero="Mentors" description={meta.description} />
+        <Header hero="Mentors" description="Learn more about our event mentors." />
         <MentorsGrid mentors={mentors} />
       </Layout>
     </Page>

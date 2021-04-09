@@ -23,7 +23,7 @@ import Header from '@components/header';
 
 import { getAllTalks } from '@lib/cms-api';
 import { Talk } from '@lib/types';
-
+import { META_DESCRIPTION } from '@lib/constants';
 type Props = {
   talks: Talk[];
 };
@@ -31,12 +31,12 @@ type Props = {
 export default function Talks({ talks }: Props) {
   const meta = {
     title: 'Talks - Annaba Techdays',
-    description: 'A variety of interesting talks to look up to.'
+    description: META_DESCRIPTION
   };
   return (
     <Page meta={meta}>
       <Layout>
-        <Header hero="Talks" description={meta.description} />
+        <Header hero="Talks" description="A variety of interesting talks to look up to." />
         <TalksGrid talks={talks} />
       </Layout>
     </Page>

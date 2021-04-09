@@ -20,7 +20,7 @@ import Page from '@components/page';
 import PartnersGrid from '@components/partners-grid';
 import Header from '@components/header';
 import Layout from '@components/layout';
-
+import { META_DESCRIPTION } from '@lib/constants';
 import { getAllPartners } from '@lib/cms-api';
 import { Partner } from '@lib/types';
 
@@ -31,13 +31,13 @@ type Props = {
 export default function PartnersPage({ partners }: Props) {
   const meta = {
     title: 'Partners - Annaba Techdays',
-    description: 'Meet our event partners.'
+    description: META_DESCRIPTION
   };
 
   return (
     <Page meta={meta}>
       <Layout>
-        <Header hero="Partners" description={meta.description} />
+        <Header hero="Partners" description="Meet our event partners." />
         <PartnersGrid partners={partners} />
       </Layout>
     </Page>

@@ -20,7 +20,7 @@ import Page from '@components/page';
 import WorkshopsGrid from '@components/workshops-grid';
 import Layout from '@components/layout';
 import Header from '@components/header';
-
+import { META_DESCRIPTION } from '@lib/constants';
 import { getAllWorkshops } from '@lib/cms-api';
 import { Talk } from '@lib/types';
 
@@ -31,12 +31,12 @@ type Props = {
 export default function Workshops({ workshops }: Props) {
   const meta = {
     title: 'Workshops - Annaba Techdays',
-    description: "Various workshops to meet everyone's interests."
+    description: META_DESCRIPTION
   };
   return (
     <Page meta={meta}>
       <Layout>
-        <Header hero="Workshops" description={meta.description} />
+        <Header hero="Workshops" description="Various workshops to meet everyone's interests." />
         <WorkshopsGrid workshops={workshops} />
       </Layout>
     </Page>

@@ -18,17 +18,21 @@ import Page from '@components/page';
 import About from '@components/about';
 import Header from '@components/header';
 import Layout from '@components/layout';
+import { META_DESCRIPTION } from '@lib/constants';
 
 export default function AboutPage() {
   const meta = {
     title: 'About - Annaba Techdays',
-    description: 'Toward a community of problem solvers.'
+    description: META_DESCRIPTION
   };
 
   return (
     <Page meta={meta}>
       <Layout>
-        <Header hero="Annaba Tech Days 2nd edition" description={meta.description} />
+        <Header
+          hero="Annaba Tech Days 2nd edition"
+          description="Toward a community of problem solvers."
+        />
         <About />
       </Layout>
     </Page>
